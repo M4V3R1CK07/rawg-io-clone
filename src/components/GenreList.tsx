@@ -11,7 +11,7 @@ import useGenres, { Genre } from "../hooks/useGenre";
 import getCroppedImageUrl from "../services/image-url";
 
 interface Props {
-  onSelectGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre | null) => void;
   selectedGenre: Genre | null;
 }
 
@@ -22,12 +22,32 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 
   if (isLoading) return <Spinner />;
 
+  const allGenresOption = {
+    id: 0,
+    name: "All",
+  };
+
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
         Genres
       </Heading>
       <List>
+        <ListItem key={allGenresOption.id} paddingY="5px">
+          <HStack>
+            <Button
+              whiteSpace="normal"
+              textAlign="left"
+              fontWeight={!selectedGenre ? "bold" : "normal"}
+              onClick={() => onSelectGenre(null)}
+              fontSize="lg"
+              variant="link"
+            >
+              {allGenresOption.name}
+            </Button>
+          </HStack>
+        </ListItem>
+
         {data.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
