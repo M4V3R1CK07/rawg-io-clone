@@ -13,13 +13,12 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
 
   if (error) return null;
 
-  // Define an option for "All Platforms"
   const allPlatformsOption = { id: 0, name: "All" };
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {selectedPlatform?.name || "Platforms"}
+        {selectedPlatform?.name || "All Platforms"}
       </MenuButton>
       <MenuList>
         <MenuItem
