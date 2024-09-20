@@ -10,7 +10,13 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card>
+    <Card
+      transition="transform 0.4s, box-shadow 0.3s"
+      _hover={{
+        transform: "scale(1.05)",
+        boxShadow: "lg",
+      }}
+    >
       <Image src={getCroppedImageUrl(game.background_image)}></Image>
       <CardBody>
         <HStack
